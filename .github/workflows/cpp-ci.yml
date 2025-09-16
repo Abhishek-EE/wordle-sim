@@ -22,15 +22,15 @@ jobs:
       # Configure CMake
       - name: Configure project
         run: |
-          cmake -S . -B build
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
       # Build
       - name: Build project
         run: |
-          cmake --build build -j
+          cmake --build build --config Release -- -j$(nproc)
 
       # Run tests (GoogleTest via ctest)
       - name: Run tests
         run: |
           cd build
-          ctest --output-on-failure
+          ctest --test-dir build --output-on-failure
