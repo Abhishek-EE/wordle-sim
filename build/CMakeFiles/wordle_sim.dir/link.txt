@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/wordle_sim.dir/src/main.cpp.o  -o wordle_sim  libwordle_engine.a libwordle_solver.a libwordle_simulator.a libwordle_solver.a libwordle_engine.a 

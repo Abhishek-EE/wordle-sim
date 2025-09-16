@@ -1,2 +1,0 @@
-/usr/bin/ar qc libwordle_solver.a  CMakeFiles/wordle_solver.dir/src/solver/random_solver.cpp.o CMakeFiles/wordle_solver.dir/src/solver/frequency_solver.cpp.o
-/usr/bin/ranlib libwordle_solver.a

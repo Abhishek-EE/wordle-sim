@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/wordle_cli.dir/src/wordle.cpp.o  -o wordle_cli  libwordle_engine.a 
