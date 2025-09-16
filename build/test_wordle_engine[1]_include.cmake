@@ -1,0 +1,5 @@
+if(EXISTS "/home/abhishek/dev/learn/cpp/wordle-sim/build/test_wordle_engine[1]_tests.cmake")
+  include("/home/abhishek/dev/learn/cpp/wordle-sim/build/test_wordle_engine[1]_tests.cmake")
+else()
+  add_test(test_wordle_engine_NOT_BUILT test_wordle_engine_NOT_BUILT)
+endif()

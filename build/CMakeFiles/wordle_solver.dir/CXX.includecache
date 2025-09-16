@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/abhishek/dev/learn/cpp/wordle-sim/src/solver/frequency_solver.cpp
+
+/home/abhishek/dev/learn/cpp/wordle-sim/src/solver/random_solver.cpp
+

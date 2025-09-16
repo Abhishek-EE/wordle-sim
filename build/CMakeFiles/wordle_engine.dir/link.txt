@@ -1,0 +1,2 @@
+/usr/bin/ar qc libwordle_engine.a  CMakeFiles/wordle_engine.dir/src/engine/wordle_engine.cpp.o CMakeFiles/wordle_engine.dir/src/engine/utils.cpp.o CMakeFiles/wordle_engine.dir/src/dictionary.cpp.o
+/usr/bin/ranlib libwordle_engine.a

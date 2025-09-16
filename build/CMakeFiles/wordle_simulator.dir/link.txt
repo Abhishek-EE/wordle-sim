@@ -1,0 +1,2 @@
+/usr/bin/ar qc libwordle_simulator.a  CMakeFiles/wordle_simulator.dir/src/simulator/simulator.cpp.o
+/usr/bin/ranlib libwordle_simulator.a
