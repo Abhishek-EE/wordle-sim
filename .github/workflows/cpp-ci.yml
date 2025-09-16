@@ -1,4 +1,4 @@
-name: C++ CI
+name: C++ CI (Ninja)
 
 on:
   push:
@@ -21,15 +21,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Install Ninja on Windows
+      - name: Install Ninja on Windows
+        if: runner.os == 'Windows'
+        run: choco install ninja -y
+
       # Set up CMake
       - name: Setup CMake
         uses: jwlawson/actions-setup-cmake@v1
         with:
           cmake-version: "3.25.0"
 
-      # Configure CMake
+      # Configure CMake with Ninja
       - name: Configure project
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build-type }}
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=${{ matrix.build-type }}
 
       # Build project
       - name: Build project
