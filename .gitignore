@@ -1,0 +1,14 @@
+# Ignore build directory
+/build/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+
+# Ignore test artifacts
+Testing/
+*.log
+*.txt
+
+# Ignore system files
+.DS_Store
+*.swp
