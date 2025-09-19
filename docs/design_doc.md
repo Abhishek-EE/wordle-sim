@@ -91,61 +91,78 @@ The project is organized into three primary modules:
 
 ### Class Diagram
 
-                 +---------------------+
-                 |     WordleEngine    |
-                 +---------------------+
-                 | - secret_: string   |
-                 | - max_turns_: int   |
-                 +---------------------+
-                 | + guess(string):string
-                 | + is_win(string):bool
-                 +---------------------+
+```mermaid
+classDiagram
+    class WordleEngine {
+        - secret_: string
+        - max_turns_: int
+        + guess(word: string) string
+        + is_win(word: string) bool
+    }
 
-+----------------+        uses         +----------------+
-|   Simulator    |-------------------->|    Solver      |
-+----------------+                     +----------------+
-| - dictionary_  |                     | # dictionary_  |
-| - solutions_   |                     | # solutions_   |
-+----------------+                     | # name_        |
-| + run_many()   |                     +----------------+
-| + run_game()   |                     | + reset()      |
-| + make_solver()|                     | + next_guess() |
-+----------------+                     +----------------+
-                                              ^
-                                              |
-        +----------------------+--------------+----------------+
-        |                      |                             |
-+----------------+     +-------------------+        +-------------------+
-| RandomSolver   |     | FrequencySolver   |        | EntropySolver (*) |
-+----------------+     +-------------------+        +-------------------+
-| picks random   |     | letter frequency  |        | info gain calc    |
-+----------------+     +-------------------+        +-------------------+
+    class Simulator {
+        - dictionary_
+        - solutions_
+        + run_many()
+        + run_game()
+        + make_solver()
+    }
 
-*(*) EntropySolver = future extension.*
+    class Solver {
+        # dictionary_
+        # solutions_
+        # name_
+        + reset()
+        + next_guess()
+    }
+
+    Simulator --> Solver : uses
+    Solver <|-- RandomSolver
+    Solver <|-- FrequencySolver
+    Solver <|-- EntropySolver
+
+    class RandomSolver {
+        picks random
+    }
+
+    class FrequencySolver {
+        letter frequency
+    }
+
+    class EntropySolver {
+        info gain calc
+    }
+```
 
 ---
 
 ### Sequence Diagram (Game Flow)
-+-------------+ +----------+ +----------------+
-| Simulator | | Solver | | WordleEngine |
-+-------------+ +----------+ +----------------+
-| | |
-| reset() | |
-|------------------>| |
-| | |
-Loop (max 6 turns) | |
-| next_guess(history) |
-|------------------>| |
-| | |
-| guess word --------------------->|
-| | feedback |
-| |<--------------------|
-| update history | |
-| | |
-| is_win(feedback)?| |
-|<----------------------------------------|
-| | |
-+-----------------------------------------+
+```mermaid
+sequenceDiagram
+    participant S as Simulator
+    participant R as Solver
+    participant W as WordleEngine
+
+    S ->> R: reset()
+
+    loop max 6 turns
+        S ->> R: next_guess(history)
+        R ->> W: guess(word)
+        W -->> R: feedback
+        R ->> S: update history
+        W -->> S: is_win(feedback)?
+    end
+```
+
+### 🔍 Notes:
+- `participant` defines the lifelines (`Simulator`, `Solver`, `WordleEngine`).
+- `->>` is a solid arrow (call).
+- `-->>` is a return/response arrow.
+- `loop` creates the loop box with your `max 6 turns`.
+
+This will render with **three lifelines**, arrows between them, and a loop box for the turn sequence.
+
+---
 
 ---
 
