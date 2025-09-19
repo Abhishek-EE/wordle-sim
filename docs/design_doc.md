@@ -44,18 +44,19 @@ The project is organized into three primary modules:
 ## 4. System Architecture
 
 ### High-Level Block Diagram
-+---------------------+        +---------------------+        +---------------------+
-|    Wordle Engine    | <----> |       Simulator     | <----> |       Solver(s)     |
-|  (Game Rules,       |        |  (Runs Experiments, |        |  Random, Frequency, |
-|  Feedback Logic)    |        |   Collects Stats)   |        |  Entropy, ...       |
-+---------------------+        +---------------------+        +---------------------+
-            ^                                                         ^
-            |                                                         |
-            +----------------> Dictionary Loader <--------------------+
-                                  (Word Lists)
+```mermaid
+flowchart LR
+    WE[Wordle Engine<br/>(Game Rules,<br/>Feedback Logic)]
+    SIM[Simulator<br/>(Runs Experiments,<br/>Collects Stats)]
+    SOL[Solver(s)<br/>Random, Frequency,<br/>Entropy, ...]
+    DL[Dictionary Loader<br/>(Word Lists)]
 
+    WE <--> SIM
+    SIM <--> SOL
 
-
+    WE <-- DL
+    SOL <-- DL
+```
 ---
 
 ### Module Breakdown
