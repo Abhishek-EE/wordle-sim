@@ -46,16 +46,26 @@ The project is organized into three primary modules:
 ### High-Level Block Diagram
 ```mermaid
 flowchart LR
-    WE[Wordle Engine<br/>(Game Rules,<br/>Feedback Logic)]
-    SIM[Simulator<br/>(Runs Experiments,<br/>Collects Stats)]
-    SOL[Solver(s)<br/>Random, Frequency,<br/>Entropy, ...]
-    DL[Dictionary Loader<br/>(Word Lists)]
+    WE["Wordle Engine
+(Game Rules,
+Feedback Logic)"]
+
+    SIM["Simulator
+(Runs Experiments,
+Collects Stats)"]
+
+    SOL["Solver(s)
+Random, Frequency,
+Entropy, ..."]
+
+    DL["Dictionary Loader
+(Word Lists)"]
 
     WE <--> SIM
     SIM <--> SOL
 
-    WE <-- DL
-    SOL <-- DL
+    DL --> WE
+    DL --> SOL
 ```
 ---
 
